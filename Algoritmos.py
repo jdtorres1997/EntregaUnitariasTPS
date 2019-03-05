@@ -23,13 +23,10 @@ def quicksort(lista, izq, der):
     return lista
 
 def bubbleSort(lista):
-    comparaciones = 0
     n = len(lista)
 
     for i in range(1, n):
         for j in range(n-i):
-            comparaciones += 1
-
             if lista[j] > lista[j+1]:
                 lista[j], lista[j+1] = lista[j+1], lista[j]
 
