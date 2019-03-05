@@ -4,3 +4,6 @@ QuickSort -- OK -- OK
 BubbleSort -- Hay metodo adicional -- Pendiente
 MergeSort -- pendiente -- Pendiente
 SelectionSort -- Pendiente -- Pendiente
+pesoArbol -- OK -- OK
+cantidadElementos -- OK -- OK
+alturaArbol -- OK -- OK
