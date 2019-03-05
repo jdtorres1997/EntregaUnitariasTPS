@@ -1,3 +1,6 @@
+from random import *
+
+
 def quicksort(lista, izq, der):
     i = izq
     j = der
@@ -5,10 +8,8 @@ def quicksort(lista, izq, der):
 
     while(i <= j):
         while lista[i] < x and j <= der:
-            print("While 1", lista)
             i = i+1
         while x < lista[j] and j > izq:
-            print("While 2", lista)
             j = j-1
         if i <= j:
             aux = lista[i]
@@ -16,13 +17,10 @@ def quicksort(lista, izq, der):
             lista[j] = aux
             i = i+1
             j = j-1
-            print("IF 1", lista)
 
         if izq < j:
-            print("IF 2", lista)
             quicksort(lista, izq, j)
         if i < der:
-            print("IF 3", lista)
             quicksort(lista, i, der)
 
     return lista
@@ -51,25 +49,6 @@ def insertionSort(lista):
 
         lista[j] = val
 
-    return lista
-
-
-def shellSort(lista):
-    n = len(lista)
-    gap = int(n / 2)
-
-    while gap > 0:
-        for i in range(gap, n):
-            val = lista[i]
-            j = i
-
-            while j >= gap and lista[j-gap] > val:
-                lista[j] = lista[j-gap]
-                j -= gap
-
-            lista[j] = val
-
-        gap = int(gap / 2)
     return lista
 
 
@@ -124,3 +103,118 @@ def merge(listaA, listaB):
         b += 1
 
     return lista_nueva
+
+
+seed()
+
+
+def inorder(x):
+    i = 0
+    j = len(x)
+    while i + 1 < j:
+        if x[i] > x[i + 1]:
+            return False
+        i += 1
+    return True
+
+
+def bogo(x):
+    while not inorder(x):
+        shuffle(x)
+    return x
+
+
+def pesoArbol(arbol):
+    if type(arbol) == int:
+        return arbol
+    elif len(arbol) == 1:
+        return pesoArbol(arbol[0])
+    else:
+        result = 0
+        n = len(arbol)
+        for i in range(n):
+            result += pesoArbol(arbol[i])
+        return result
+
+
+def cantidadElementos(arbol):
+    if type(arbol) == int:
+        return 1
+    elif len(arbol) == 1:
+        return cantidadElementos(arbol[0])
+    else:
+        result = 0
+        n = len(arbol)
+        for i in range(n):
+            result += cantidadElementos(arbol[i])
+        return result
+
+
+def pesoPromArbol(arbol):
+    return pesoArbol(arbol)/cantidadElementos(arbol)
+
+
+def alturaArbol(arbol):
+    if type(arbol) == int:
+        return 1
+    elif len(arbol) == 1:
+        return alturaArbol(arbol[0])
+    elif len(arbol) == 2 and type(arbol[0]) == int:
+        return 1+max(alturaArbol(arbol[0]), alturaArbol(arbol[1]))
+    else:
+        result = []
+        n = len(arbol)
+        for i in range(n):
+            result.append(alturaArbol(arbol[i]))
+        return max(result)
+    
+def merge_sort2(lista): 
+    n = len(lista) 
+    if(n == 1): return lista 
+    izquierda = merge_sort2(lista[:int(n/2)]) 
+    derecha = merge_sort2(lista[int(n/2):]) 
+    return merge2(izquierda, derecha) 
+ 
+def merge2(izquierda, derecha): 
+    resultado = [] 
+    i = 0 
+    j = 0 
+    len_izquierda = len(izquierda) 
+    len_derecha = len(derecha) 
+ 
+    while(i < len_izquierda or j < len_derecha): 
+        if(i >= len_izquierda): 
+            resultado.append(derecha[j]) 
+            j = j + 1 
+        elif(j >= len_derecha): 
+            resultado.append(izquierda[i]) 
+            i = i + 1 
+        elif(izquierda[i] < derecha[j]): 
+            resultado.append(izquierda[i]) 
+            i = i + 1 
+        else: 
+            resultado.append(derecha[j]) 
+            j = j + 1 
+    return resultado 
+
+def bucket_sort(alist):
+    largest = max(alist)
+    length = len(alist)
+    size = largest/length
+ 
+    buckets = [[] for _ in range(length)]
+    for i in range(length):
+        j = int(alist[i]/size)
+        if j != length:
+            buckets[j].append(alist[i])
+        else:
+            buckets[length - 1].append(alist[i])
+ 
+    for i in range(length):
+        insertionSort(buckets[i])
+ 
+    result = []
+    for i in range(length):
+        result = result + buckets[i]
+ 
+    return result
