@@ -1,4 +1,3 @@
-
 def quicksort(lista, izq, der):
     i = izq
     j = der
@@ -6,8 +5,10 @@ def quicksort(lista, izq, der):
 
     while(i <= j):
         while lista[i] < x and j <= der:
+            print("While 1", lista)
             i = i+1
         while x < lista[j] and j > izq:
+            print("While 2", lista)
             j = j-1
         if i <= j:
             aux = lista[i]
@@ -15,12 +16,17 @@ def quicksort(lista, izq, der):
             lista[j] = aux
             i = i+1
             j = j-1
+            print("IF 1", lista)
 
         if izq < j:
+            print("IF 2", lista)
             quicksort(lista, izq, j)
         if i < der:
+            print("IF 3", lista)
             quicksort(lista, i, der)
+
     return lista
+
 
 def bubbleSort(lista):
     n = len(lista)
@@ -32,9 +38,9 @@ def bubbleSort(lista):
 
     return lista
 
+
 def insertionSort(lista):
     n = len(lista)
-    comparaciones = 0
 
     for i in range(1, n):
         val = lista[i]
@@ -43,22 +49,20 @@ def insertionSort(lista):
         while j > 0 and lista[j-1] > val:
             lista[j] = lista[j-1]
             j -= 1
-            comparaciones += 1
 
         lista[j] = val
 
     return lista
 
+
 def shellSort(lista):
-    comparaciones = 0
     n = len(lista)
-    gap = int (n / 2)
+    gap = int(n / 2)
 
     while gap > 0:
         for i in range(gap, n):
             val = lista[i]
             j = i
-            comparaciones += 1
 
             while j >= gap and lista[j-gap] > val:
                 lista[j] = lista[j-gap]
@@ -66,16 +70,15 @@ def shellSort(lista):
 
             lista[j] = val
 
-        gap = int (gap / 2)
+        gap = int(gap / 2)
     return lista
 
+
 def selectionSort(lista):
-    comparaciones = 0
     n = len(lista)
 
     for i in range(n - 1):
         menor = i
-        comparaciones += 1
 
         for j in range(i + 1, n):
             if lista[j] < lista[menor]:
@@ -84,11 +87,12 @@ def selectionSort(lista):
         lista[i], lista[menor] = lista[menor], lista[i]
     return lista
 
+
 def mergeSort(lista):
     if len(lista) <= 1:
         return lista
 
-    medio =int (len(lista) / 2)
+    medio = int(len(lista) / 2)
     izquierda = lista[:medio]
     derecha = lista[medio:]
 
@@ -97,14 +101,13 @@ def mergeSort(lista):
 
     return merge(izquierda, derecha)
 
+
 def merge(listaA, listaB):
-    comparaciones = 0
     lista_nueva = []
     a = 0
     b = 0
 
     while a < len(listaA) and b < len(listaB):
-        comparaciones += 1
 
         if listaA[a] < listaB[b]:
             lista_nueva.append(listaA[a])
