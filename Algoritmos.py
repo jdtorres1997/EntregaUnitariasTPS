@@ -41,7 +41,6 @@ def bubbleSort(lista):
 
 def insertionSort(lista):
     n = len(lista)
-
     for i in range(1, n):
         val = lista[i]
         j = i
