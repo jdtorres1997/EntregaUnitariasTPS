@@ -34,8 +34,7 @@ def bubbleSort(lista):
 
 def insertionSort(lista):
     n = len(lista)
-    comparaciones = 0
-
+    
     for i in range(1, n):
         val = lista[i]
         j = i
@@ -43,14 +42,12 @@ def insertionSort(lista):
         while j > 0 and lista[j-1] > val:
             lista[j] = lista[j-1]
             j -= 1
-            comparaciones += 1
 
         lista[j] = val
 
     return lista
 
 def shellSort(lista):
-    comparaciones = 0
     n = len(lista)
     gap = int (n / 2)
 
@@ -58,7 +55,6 @@ def shellSort(lista):
         for i in range(gap, n):
             val = lista[i]
             j = i
-            comparaciones += 1
 
             while j >= gap and lista[j-gap] > val:
                 lista[j] = lista[j-gap]
@@ -70,12 +66,10 @@ def shellSort(lista):
     return lista
 
 def selectionSort(lista):
-    comparaciones = 0
     n = len(lista)
 
     for i in range(n - 1):
         menor = i
-        comparaciones += 1
 
         for j in range(i + 1, n):
             if lista[j] < lista[menor]:
@@ -98,13 +92,11 @@ def mergeSort(lista):
     return merge(izquierda, derecha)
 
 def merge(listaA, listaB):
-    comparaciones = 0
     lista_nueva = []
     a = 0
     b = 0
 
     while a < len(listaA) and b < len(listaB):
-        comparaciones += 1
 
         if listaA[a] < listaB[b]:
             lista_nueva.append(listaA[a])
